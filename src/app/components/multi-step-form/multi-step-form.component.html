@@ -1,0 +1,20 @@
+<form [formGroup]="form" class="multi-step-form">
+  <div class="action-btn">
+    <button (click)="previousStep()" *ngIf="activeStep > 1">Previous</button>
+    <button (click)="nextStep()" *ngIf="activeStep < totalSteps">Next</button>
+    <button (click)="submitForm()" *ngIf="activeStep === totalSteps">
+      Submit
+    </button>
+  </div>
+  <div [@stepAnimation]="activeStep" class="form-inputs">
+    @if(activeStep !== totalSteps) {
+      <div *ngFor="let field of fields[activeStep - 1]"> 
+        <app-dynamic-field [field]="field" [form]="getFormGroupForStep()"></app-dynamic-field>
+      </div>
+    }
+    @else {
+      <app-review></app-review>
+    }
+    
+  </div>
+</form>

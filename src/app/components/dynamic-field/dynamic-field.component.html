@@ -1,0 +1,12 @@
+@if (field) {
+<div [formGroup]="form" class="form-field">
+  <label for="{{ field.key }}">{{ field.label }}:</label>
+  <input
+    [type]="field.type"
+    id="{{ field.key }}"
+    [formControlName]="field.key"
+    [fieldLabel]="field.label"
+    [appFormError]="control"
+  />
+</div>
+}
